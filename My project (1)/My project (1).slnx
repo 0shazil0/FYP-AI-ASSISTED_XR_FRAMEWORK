@@ -1,0 +1,9 @@
+﻿<Solution>
+  <Project Path="Unity.XR.Interaction.Toolkit.Samples.StarterAssets.csproj" />
+  <Project Path="Unity.XR.Interaction.Toolkit.Samples.ARStarterAssets.csproj" />
+  <Project Path="com.IvanMurzak.Unity.MCP.Installer.Tests.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="com.IvanMurzak.Unity.MCP.Installer.csproj" />
+  <Project Path="Unity.XR.Interaction.Toolkit.Samples.ARStarterAssets.Editor.csproj" />
+  <Project Path="Unity.XR.Interaction.Toolkit.Samples.StarterAssets.Editor.csproj" />
+</Solution>

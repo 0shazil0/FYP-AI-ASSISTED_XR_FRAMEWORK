@@ -1,0 +1,132 @@
+# =========================
+# UNITY (ESSENTIAL IGNORE)
+# =========================
+
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+UserSettings/
+MemoryCaptures/
+dummy*_BackUpThisFolder_ButDontShipItWithYourGame/
+*_BurstDebugInformation_DoNotShip/
+
+# Auto-generated VS / Rider files
+.vs/
+.idea/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+
+# Unity cache & crash
+sysinfo.txt
+.utmp/
+
+# =========================
+# IMPORTANT: KEEP THESE
+# =========================
+# DO NOT IGNORE:
+# Assets/
+# Packages/
+# ProjectSettings/
+# *.meta
+
+# =========================
+# NODE / BACKEND
+# =========================
+
+node_modules/
+venv/
+backend/venv/
+__pycache__/
+*.pyc
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+# .env
+# .env.local
+# .env.*.local
+
+# Build outputs
+dist/
+build/
+
+# =========================
+# VS CODE
+# =========================
+
+# .vscode/*
+# !.vscode/settings.json
+# !.vscode/extensions.json
+# !.vscode/launch.json
+# !.vscode/tasks.json
+
+# =========================
+# OS FILES
+# =========================
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+# LOGS
+# =========================
+
+*.log
+
+# =========================
+# LARGE / GENERATED FILES
+# =========================
+
+*.apk
+*.aab
+*.unitypackage
+*.zip
+*.rar
+*.tar
+*.gz
+*.7z
+
+# Videos / recordings
+*.mp4
+*.mov
+*.avi
+
+# =========================
+# OPTIONAL (USE WITH LFS)
+# =========================
+# Uncomment if using Git LFS
+
+# *.fbx
+# *.png
+# *.jpg
+# *.psd
+# *.wav
+# *.mp3
+# *.ogg
+
+# =========================
+# DATABASE (if any local)
+# =========================
+
+*.sqlite
+*.db
+
+# =========================
+# TEST / TEMP FILES
+# =========================
+
+*.tmp
+*.bak
+*.old

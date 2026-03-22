@@ -1,0 +1,453 @@
+
+
+==================================================
+==== FILE: Fyp Proposal_ Ai-powered Xr Assistive Guidance System.docx ====
+==================================================
+
+Group Information
+Group Number   _____19________    					Date:  29-01-2026
+
+    Note: The name of Group Leader should be written at S.No. 01
+
+B. Project Information
+1. Major Domain:
+Artificial Intelligence (AI), Extended Reality (XR), Human-Computer Interaction (HCI)
+2. Proposed Title: AI-Powered Extended Reality (XR) Assistive Guidance System for Real-Time Task Support
+3. Project Type:
+Software (AI + XR) with optional hardware support (AR glasses / mobile devices)
+
+C. Sustainable Development Goals (SDGs) Covered
+This project aligns with the following United Nations Sustainable Development Goals (SDGs):
+SDG 3 – Good Health and Well-being: Assistive XR guidance for fitness training, rehabilitation, and elderly support.
+SDG 4 – Quality Education: Interactive AR-based learning and step-by-step guidance for digital literacy and skill development.
+SDG 9 – Industry, Innovation, and Infrastructure: Promotes innovation through AI-driven XR systems.
+SDG 11 – Sustainable Cities and Communities: Disaster management and emergency response guidance through XR.
+SDG 10 – Reduced Inequalities: Improves accessibility for elderly and non-technical users.
+
+D. Characteristics of CEP (Complex Engineering Problem)
+The project addresses multiple CEP characteristics:
+Multidisciplinary integration of AI, Computer Vision, XR, and HCI
+Requirement of real-time perception and decision-making
+Interaction with uncertain and dynamic environments
+Consideration of human safety, usability, and accessibility
+Design under practical constraints (latency, hardware limits)
+
+E. Background
+With the rapid advancement of Artificial Intelligence and Extended Reality (XR), there is a growing opportunity to bridge the gap between complex technology and human usability. Many users—especially elderly individuals, beginners, or people in high-stress environments—struggle to understand modern interfaces or perform physical tasks correctly. Existing instructional systems rely heavily on text or videos, which lack real-time contextual awareness.
+AI-powered XR systems can observe the real world, understand the environment, and overlay meaningful guidance directly onto the user’s field of view. By combining scene understanding, reasoning, and immersive visualization, such systems can provide intuitive, step-by-step assistance for a wide range of real-world tasks.
+
+F. Problem Statement
+Users often face difficulty performing tasks that require procedural knowledge, physical precision, or interaction with complex interfaces. Traditional instructions are static and fail to adapt to real-world context. There is a lack of intelligent, real-time assistive systems that can perceive the environment, understand user intent, and provide actionable guidance directly within the user’s view.
+
+G. Aim & Objectives
+Aim:
+To develop an AI-powered XR system that provides real-time, context-aware visual guidance for task execution across multiple domains.
+Objectives:
+To design a scene understanding pipeline using computer vision and AI
+To integrate AI reasoning for task interpretation and guidance generation
+To overlay AR-based visual cues such as arrows, highlights, and 3D models
+To support voice-based interaction and accessibility features
+To evaluate usability, accuracy, and task completion efficiency
+
+H. Scope
+In Scope:
+Real-time detection of objects, screens, or tools
+AI-driven decision-making for guidance generation
+AR overlays including arrows, highlights, and 3D demonstrations
+Cloud-based AI processing with XR visualization
+Use-case-driven prototypes
+Out of Scope:
+Full offline/on-device AI processing
+High-end commercial AR hardware development
+Medical diagnosis or safety-critical certifications
+
+I. Proposed Use Cases
+1. AI XR Gym Coach
+Detects gym equipment (e.g., treadmill, bench press)
+Displays a 3D human model performing the correct exercise
+Provides posture correction and repetition guidance in AR
+2. AI XR Cooking Assistant
+Recognizes kitchen tools and ingredients
+Displays step-by-step recipe instructions in AR
+Shows 3D animations for cutting, mixing, and cooking techniques
+3. AI XR Digital Assistant for Elderly Users
+Understands computer screens and UI elements (e.g., MS Word)
+Guides users using AR arrows and voice prompts
+Assists in completing digital tasks easily
+4. AI XR Disaster Management Assistant
+Provides real-time guidance during emergencies
+Shows safe evacuation paths and instructions in AR
+Assists rescue workers with spatial awareness and task execution
+
+J. High-Level System Architecture
+Camera captures real-world scene
+Computer Vision detects objects/UI elements
+AI model understands context and user intent
+LLM-based reasoning generates guidance steps
+XR engine renders visual overlays
+Voice feedback assists the user
+
+K. Tools & Technologies (Summary)
+XR Engine: Unity + AR Foundation
+AI & CV: OpenCV, OCR, YOLO (optional)
+AI Reasoning: Cloud-based LLMs
+Programming: C#, Python
+Hardware: AR-enabled smartphone / AR glasses
+
+Note
+Any change in the name of supervisor, project title, or group members by the students should be notified to TRC.
+
+==================================================
+==== FILE: Approach Report 1.docx ====
+==================================================
+
+Technical Architecture and Implementation Roadmap: AI-Powered XR Assistive Guidance Systems
+1. Strategic Context: The Evolution of Real-Time Assistive Intelligence
+The paradigm of instructional technology is undergoing a foundational shift from static, linear media toward dynamic, context-aware Extended Reality (XR) ecosystems. While traditional text and video provide a baseline of information, they lack environmental grounding and the ability to adapt to real-time user state. This creates a critical "procedural knowledge gap," particularly for elderly demographics struggling with digital literacy and professionals operating in high-stress, low-latency disaster recovery environments. Current systems fail because they are fundamentally disconnected from the user’s physical reality; they provide data without context. To bridge this gap, we must architect a system capable of perceiving the environment, interpreting intent, and delivering actionable, spatialized intelligence. The architectural objective of this proposed system is to deploy a high-fidelity sensory-cognitive pipeline that abstracts environmental complexity into intuitive, real-time guidance.
+2. Core System Architecture: The Sensory-Cognitive Pipeline
+To facilitate seamless human-computer interaction, the system utilizes a multi-layered architecture designed to balance local low-latency perception with high-level cognitive reasoning. By decoupling these layers, we ensure that the system provides responsive visual feedback while maintaining the depth of understanding required for complex task execution.
+Pipeline Components and Evaluation
+Perception Layer (Computer Vision & Scene Understanding):
+Function: Utilizes high-speed camera capture and CV models (YOLO/OCR) to identify objects, digital UI elements, and spatial markers.
+So What? (Evaluation): This layer serves as the "sensory input," ensuring that guidance is grounded in the user's current reality. It identifies the "Region of Interest" (ROI) to prevent processing overhead on irrelevant environmental data.
+Reasoning Layer (Cloud-based LLM Integration):
+Function: Orchestrates cloud-based Large Language Models (LLMs) to perform intent understanding and procedural logic generation.
+So What? (Evaluation): We accept a trade-off between LLM token latency and context window size to ensure the "brain" of the system can handle complex, multi-step problem-solving. This allows for guidance that evolves dynamically rather than following a rigid script.
+Visualization Layer (XR Engine & Spatial Rendering):
+Function: Employs Unity and AR Foundation to render 3D cues, spatial overlays, and animations.
+So What? (Evaluation): By abstracting procedural complexity into spatial 3D overlays, we achieve significant cognitive load reduction, enabling immediate task execution without prior manual-based training or the distraction of pose-estimation drift.
+Technical Scope and Boundaries To maintain architectural integrity and focus on the primary objectives, the following boundaries are established:
+In-Scope: Real-time detection of objects, screens, and tools; AI-driven decision-making for guidance generation; 3D AR overlays (arrows, highlights); Cloud-based reasoning; Voice-based accessibility features.
+Out-of-Scope: Full offline/on-device AI reasoning (due to mobile hardware limits); High-end commercial AR hardware development; Medical diagnosis or safety-critical certifications.
+This architectural framework transitions from local environmental perception to cloud-based reasoning, optimized for the specific technology stack detailed below.
+3. Technology Stack Selection and Comparative Justification
+Scalability in AI-driven XR requires a robust, cross-platform stack that mitigates hardware-specific constraints while providing the necessary libraries for rapid AI integration.
+Primary Technology Stack vs. Rejected Alternatives
+This stack supports the rapid development and deployment of our four primary use cases—Gym, Cooking, Elderly Assistance, and Disaster Management—by prioritizing interoperability and reasoning depth.
+4. Real-Time Optimization: Accelerating Development with MCP and Assistive AI
+Traditional development cycles struggle with the multidisciplinary requirements of XR. To address this, we implement Model Context Protocol (MCP) Servers as the foundational interop layer.
+The MCP architecture provides the LLM with real-time access to the XR scene graph and codebase. Rather than processing static snapshots, the AI can query the environment (e.g., "Where is the user looking?" or "Is the target object currently occluded?"). This enables "assistive coding" workflows where the system can self-debug spatial mapping issues or optimize UI layouts based on real-time environment data, drastically shortening the prototyping-to-production loop.
+Real-Time Optimization Strategies
+Latency-Sensitive Inference: Offloading heavy reasoning to cloud LLMs while utilizing YOLO for bounding box detection to define specific ROIs, reducing the data payload sent to the cloud.
+Jitter & Drift Mitigation: Implementing efficient OCR and YOLO integration to ensure stable object tracking and minimize frame-rate jitters and pose-estimation drift.
+Assistive Prototyping: Utilizing MCP-enabled LLMs to automate the generation of AR visual cues, ensuring that 3D model placements are logically consistent with the detected scene.
+5. End-to-End Implementation Roadmap
+Managing this system is a Complex Engineering Problem (CEP), requiring a phased approach to address multidisciplinary integration, uncertain environments, and human safety.
+Phase I: Perception & Environment Mapping
+Focus: YOLO and OpenCV integration for robust object/screen detection.
+CEP Mapping: Addresses "Interaction with uncertain and dynamic environments."
+Critical Success Factor: High accuracy in varying lighting/occlusion scenarios.
+Phase II: Logic & Reasoning Integration
+Focus: Connecting Unity to cloud-based LLM reasoning engines.
+CEP Mapping: Addresses "Real-time perception and decision-making."
+Critical Success Factor: LLM-generated guidance must be contextually relevant and safe.
+Phase III: UI/UX & Immersive Overlay
+Focus: AR Foundation rendering and voice-feedback integration.
+CEP Mapping: Addresses "Consideration of human safety, usability, and accessibility."
+Critical Success Factor: Minimizing cognitive load through intuitive spatial highlights.
+Phase IV: Domain-Specific Validation
+Focus: Stress-testing prototypes against UN Sustainable Development Goals (SDGs).
+CEP Mapping: Addresses "Multidisciplinary integration and design under practical constraints."
+Critical Success Factor: Validation of task completion efficiency across all four use cases.
+6. Value Realization: Domain Applications and SDG Alignment
+The technical architecture of this system translates directly into societal value by democratizing access to expert-level guidance.
+Use Case to SDG Mapping
+By prioritizing SDG 10 (Reduced Inequalities), this system ensures that the benefits of cognitive-AI integration are accessible to all, transforming human-computer interaction into a real-time, context-aware partnership.
+
+
+==================================================
+==== FILE: Approach report 2.docx ====
+==================================================
+
+Based on the project proposal for the AI-Powered Extended Reality (XR) Assistive Guidance System and your request for a deep technical pathway with a focus on real-time performance and development acceleration (MCP), here is a comprehensive end-to-end roadmap.
+
+1. Core Architectural Strategy: The "Hybrid-Cloud" Approach
+To achieve the "Real-time" requirement mentioned in your Complex Engineering Problem (CEP) characteristics, we cannot rely solely on the cloud for every single frame of video (which causes massive latency). We must use a Hybrid approach:
+Local (Device): Fast tracking, rendering, and lightweight object detection.
+Cloud (AI): Heavy reasoning, scene understanding, and complex instruction generation.
+Technology Stack & Decision Matrix
+
+2. Development Accelerators: The MCP Pathway
+You asked for MCP (Model Context Protocol) usage for faster development. This is how you set up your coding environment to build this system rapidly.
+The Concept: Use an AI IDE (like Cursor or VS Code with Cline) connected to MCP Servers. This allows the AI to "read" the documentation of Unity and OpenCV in real-time to write code for you, rather than hallucinating outdated syntax.
+Setup Instructions:
+IDE: Install Cursor or VS Code (Insiders).
+MCP Server for Unity: Configure a local MCP server that indexes your Unity Project folders. 
+Benefit: The AI knows exactly what C# scripts you have. If you ask "Make the arrow point to the detected object," it knows your variable names.
+MCP Server for Docs: Connect an MCP server to the Unity AR Foundation Documentation and OpenCV Python Docs. 
+Benefit: When you encounter a deprecated ARTrackedImageManager error, the AI checks the live docs and fixes it instantly.
+
+3. End-to-End Implementation Roadmap
+Phase 1: The "Eyes" (Python Backend & Vision)
+Goal: Create a server that receives an image and understands it.
+Server Setup: 
+Create a Python environment using FastAPI.
+Implement a WebSocket endpoint (ws://localhost:8000/stream).
+AI Integration (The Brain): 
+Integrate OpenAI API (GPT-4o) or Google Gemini API.
+System Prompt Engineering: You must instruct the AI to act as a spatial analyzer.
+Prompt: "You are an assistive guide. Analyze the image. Return a JSON object with: { 'task': 'gym_bench_press', 'detected_objects': ['barbell', 'bench'], 'guidance_text': 'Lower the bar to your chest', 'ar_overlay_type': 'down_arrow' }."
+Optimization: Implement a "Difference Checker." Only send the image to the LLM if the scene changes significantly (pixel variance > 15%). This saves tokens and reduces latency.
+Phase 2: The "Body" (Unity XR Client)
+Goal: Build the mobile app that captures video and renders AR.
+AR Foundation Setup: 
+Install AR Foundation and ARCore/ARKit plugins in Unity.
+Set up a standard AR Session and AR Session Origin.
+Camera Capture: 
+Write a C# script to capture the ARCameraBackground texture.
+Compress the texture (JPG, 50% quality) to reduce transmission size.
+Networking: 
+Use NativeWebSocket (a Unity package) to send the texture to your Python server.
+Listen for the JSON response.
+Phase 3: The "Hands" (AR Visualization)
+Goal: Overlay the guidance defined in the Use Cases.
+Coordinate Mapping (The Hard Part): 
+The AI sees a 2D image. Unity acts in 3D space.
+Technique: Use Raycasting. When the AI says "Cup is at pixel (200, 300)," fire a ray from the camera through that pixel. Where it hits the "AR Plane," instantiate the AR Arrow.
+Use Case Implementation: 
+Gym Coach: Use a "Ghost" shader on a 3D human model. When the user aligns their camera, overlay the ghost model on the machine.
+Cooking: Create floating UI Canvases (World Space) that hover next to ingredients.
+Elderly Assistant: Use OCR (Tesseract or EasyOCR) on the Python side to read screen text (e.g., "File Menu") and send coordinates back to Unity to draw a highlight box around the "File" button.
+Phase 4: Optimization for Real-Time (Addressing Latency)
+Prediction: If the network lags, the object moves. Use Kalman Filters in Unity to predict where the object is moving so the AR arrow doesn't "lag" behind the real object.
+Threading: Run image encoding and network requests on a separate C# thread to prevent the AR video feed from freezing.
+
+4. Resource List & Technologies
+Software & Libraries:
+Unity 6 (LTS): Primary Engine.
+Python 3.10+: Backend logic.
+FastAPI: High-performance web framework.
+YOLOv8: For rapid local object detection (optional but recommended for speed).
+Google Gemini 1.5 Flash API: Currently the cheapest and fastest multimodal model for video analysis.
+Hardware (as per Source):
+Development PC: GPU recommended for Unity Editor.
+Testing Device: AR-capable Smartphone (iPhone 12+ or Android with ARCore depth API).
+Optional: AR Glasses (e.g., XREAL or HoloLens) – Note: Source marks high-end hardware out of scope, so stick to phone-based "Video Pass-through" AR.
+5. Why this pathway? (Gap Analysis)
+Current Gap: The proposal mentions "Cloud-based AI processing".
+The Risk: If you send video to the cloud, you get 2000ms+ latency.
+The Solution (This Roadmap): By using WebSockets instead of HTTP, and Difference Checking (only processing changed frames), we reduce latency to ~500ms, which feels "Real-time" for tasks like cooking or equipment setup, satisfying the CEP requirement.
+Scope Compliance: This roadmap respects the "Out of Scope" constraint regarding full offline AI while maximizing the efficiency of the allowed Cloud architecture.
+6. Immediate Next Steps for Group 19
+Week 1: Set up the FastAPI server and test sending a webcam image to Gemini/GPT-4o via code.
+Week 2: Create the Unity project and get "AR Plane Detection" working.
+Week 3: Connect Unity to Python. Send a frame, receive a text response "I see a cup."
+Week 4: Implement the coordinate mapping (2D pixel to 3D AR anchor).
+This pathway ensures you hit the SDG goals (Education, Innovation) by making the system responsive enough to actually be useful in teaching scenarios.
+
+
+==================================================
+==== FILE: more detailed approach 1.docx ====
+==================================================
+
+Based on your request for a deep technical dive and "out-of-the-box" thinking, I have designed a comprehensive roadmap for your AI-Powered XR Assistive Guidance System. This roadmap prioritizes real-time performance, development velocity (via MCP), and rigorous evaluation.
+Strategic Overview: The "Hybrid-Spatial" Architecture
+To achieve real-time performance (latency <20ms for motion-to-photon), you cannot rely solely on the cloud. You must use a Hybrid Architecture:
+Edge (Device): Handles spatial tracking, rendering, and immediate interaction (hand tracking).
+Cloud (AI): Handles complex reasoning (VLM) and 3D asset generation.
+
+Phase 1: Development Environment & Acceleration (MCP Setup)
+Goal: Reduce coding time by 40-50% using Model Context Protocol (MCP) to prevent AI hallucinations regarding Unity/XR syntax.
+The Setup: Use Cursor or VS Code (Insiders) with an AI assistant (like Cline or Cursor AI).
+The "Out of the Box" Trick: Do not just ask ChatGPT. Connect your IDE to live documentation via MCP. 
+Action: Set up a local MCP server that indexes the Unity AR Foundation and Niantic Lightship/Immersal documentation.
+Why: Large Language Models often write outdated AR code (e.g., using deprecated ARSession syntax). An MCP server forces the AI to read the current API docs before writing code for you.
+Resource: 
+Cursor IDE: For integrated AI coding.
+MCP Server for Docs: Custom script to index local PDF/HTML docs of SDKs.
+
+Phase 2: Spatial Intelligence & Positioning (The "Eyes")
+Goal: The system must know where it is and what it is looking at with centimeter-level precision.
+Technology Selection
+Implementation Steps:
+Mapping: Use the Immersal Mapper App to scan the target workspace (e.g., a lab bench or kitchen). This creates a sparse point cloud.
+Localization: In Unity, import the map. The system will now instantly recognize the room and coordinate system ($x,y,z$) without needing QR codes.
+Semantic Masking: Use Niantic Lightship to mask out "dynamic" objects (people, moving chairs) so the AI doesn't try to anchor instructions to them.
+
+Phase 3: The "Brain" (Multimodal AI & Logic)
+Goal: Interpret the scene and generate instructions in near real-time.
+The "Out of the Box" Strategy: The Snapshot Buffer
+Don't stream video to the LLM (too slow/expensive). Use a Snapshot Buffer.
+Trigger: User asks "What do I do next?" OR System detects a significant visual change (Pixel difference > 15%).
+Capture: System captures a 2D frame.
+Optimization: Crop the image to the user's gaze point (Foveated processing) to reduce bandwidth.
+Processing: Send to GPT-4o or Gemini 1.5 Pro. 
+Prompt: "Analyze image. Return steps in JSON format: { "action": "turn_valve", "object_id": "valve_red", "location_3d_offset": [0.1, 0.2, 0] }."
+Latency Hack: While waiting for the LLM (approx. 1-2s), display a "Thinking..." UI anchored to the object to maintain immersion.
+Alternative: 3D Asset Generation
+If the user needs to see how to assemble something, text isn't enough.
+Tool: Meshy or Shape-E (OpenAI).
+Workflow: The LLM identifies a missing tool (e.g., "screwdriver"). The system calls the Meshy API to generate a 3D screwdriver model on the fly and overlays it on the table.
+
+Phase 4: Interaction & Guidance (The "Hands")
+Goal: Hands-free interaction.
+Technology Selection
+Implementation Steps:
+Ghost Hands: When the AI suggests an action (e.g., "Rotate Knob"), overlay a semi-transparent "Ghost Hand" animation performing that exact movement over the real knob.
+Visual Cues: Use 3D arrows that pulse. Avoid static text blocks; use "billboarding" text that always faces the user.
+
+Phase 5: Evaluation Framework (Crucial for FYP)
+You must prove your system works using standardized metrics. Do not just say "it felt fast." Use the NIST AR Usability Framework.
+1. Technical Performance Metrics
+Motion-to-Photon (MTP) Latency: Measure the delay between head movement and display update. 
+Target: < 20 ms for comfort.
+Method: Use a high-speed camera (240fps phone) filming the AR glasses and a real-world clock simultaneously to count frame delay.
+Tracking Drift: Measure how much the virtual arrow "slides" away from the real object over 60 seconds. Target: < 2cm.
+2. User Performance Metrics (Dexterity)
+Modified Box and Block Test (VR-BBT): 
+Setup: Have users move virtual/real blocks using your AR guidance vs. paper instructions.
+Measure: Blocks per minute. Compare "Physical Interaction" (VR-PI) vs. "Non-Physical" (VR-N) modes.
+Fitts’ Law Test: 
+Measure the speed/accuracy of users tapping virtual buttons projected onto real surfaces. This proves your interface efficiency.
+3. Cognitive Load
+NASA-TLX: Administer this standardized survey after the test. It measures Mental Demand, Physical Demand, and Frustration.
+Hypothesis: Your AR system should show lower mental demand than reading a PDF manual on a phone.
+
+Resource List
+Software Stack: 
+Unity 6: Core Engine.
+Immersal SDK: For Indoor VPS (Free tier available for devs).
+Niantic Lightship: For Semantic Segmentation (Free tier).
+OpenAI API: For Logic (GPT-4o).
+Hardware (Recommended): 
+Meta Quest 3: Best "Video Passthrough" AR for development (supports hand tracking, depth, mixed reality).
+Alternative: LiDAR-equipped iPad/iPhone (Pro models) for high-accuracy depth.
+Summary of "Out of the Box" Ideas
+Code with MCP: Don't write boilerplate; let the AI read the docs via MCP.
+Hybrid AI: Use local vision (fast) for tracking, cloud AI (smart) for reasoning.
+Generative Assets: Don't just show arrows; generate the 3D tool the user needs to find using Generative AI.
+Scientific Evaluation: Use the Box & Block test and NASA-TLX to quantify "Dexterity" and "Cognitive Load," transforming a subjective project into a scientifically valid study.
+
+
+==================================================
+==== FILE: more deatiled approach 2.docx ====
+==================================================
+
+This roadmap outlines the engineering of "NeuroGuide XR," a hypothetical AI-powered Assistive Guidance System. This system synthesizes the unsupervised "attention-driven" capture of GlaciAR with the generative, visually-rich guidance of Guided Reality, underpinned by the standardized connectivity of the Model Context Protocol (MCP) to ensure modularity and scalability.
+
+1. System Architecture
+The architecture follows a Hybrid Edge-Compute Model. Heavy reasoning (VLM/LLM) is offloaded to a local edge server (e.g., a high-end PC or NVIDIA Jetson) via Wi-Fi 6/7 to maintain low latency, while the lightweight AR headset handles sensory capture and rendering.
+Data Flow Diagram
+Sensing Layer (AR Device):
+RGB Camera + IMU $\rightarrow$ Attention Gate (Local).
+Logic: Filters video stream based on head-motion thresholds to detect "moments of relevance" (interacting with objects) vs. "in motion" (walking). Only "attended" frames are transmitted to save bandwidth.
+Perception Layer (Edge Server):
+Attended Frames $\rightarrow$ VLM Inference Engine (e.g., vLLM serving Qwen2.5-VL or Llama 3.2 Vision).
+Input: Image + User Voice Query.
+Output: Structured JSON Plan.
+Context & Reasoning Layer (MCP Host):
+MCP Host orchestrates context retrieval.
+$\leftrightarrow$ MCP Server (Documentation): Retrieves manual pages/specs via vector search (RAG).
+$\leftrightarrow$ MCP Server (State): Maintains task state (e.g., "Step 3 of 5 completed").
+$\leftrightarrow$ Sequential Thinking Tool: Decomposes complex queries into atomic actions.
+Generation Layer (Edge Server):
+Object Coordinates $\rightarrow$ Segmentation Module (SAM 2).
+Visual Type $\rightarrow$ Asset Generator (Retrieves 3D "ghost hands" or dynamic arrows).
+Rendering Layer (AR Device):
+Receives 3D Anchors + Assets.
+Renders overlays aligned via ARKit/ARCore depth maps.
+
+2. Step-by-Step Implementation Instructions
+Module A: The Attention Gate (On-Device)
+Access raw IMU data (accelerometer/gyroscope) on the AR device.
+Implement the GlaciAR attention formula: Define thresholds $\tau$ (acceleration) and $\nu$ (angular velocity).
+State Machine: If $a < \tau$ and $\omega < \nu$, switch state to ATTENDING. Trigger camera frame capture.
+Buffer frames: Only transmit when ATTENDING is true for $>N$ frames to avoid jitter.
+Module B: The VLM & MCP Core (Edge Server)
+Deploy Inference: Set up vLLM with streaming enabled to serve a Vision-Language Model (VLM).
+MCP Host Setup: Build a Python-based MCP Host.
+MCP Server Integration: 
+Install sqlite-mcp for persistent task state storage.
+Install fetch-mcp to allow the agent to pull live data from web manuals if local docs are missing.
+Reasoning Pipeline: 
+Prompt the VLM to output JSON containing: instruction_text, visual_type (Highlight, Gesture, Tool), and target_object_description.
+Module C: Spatial Grounding (Vision Pipeline)
+Object Detection: Feed the target_object_description from Module B into a Grounding DINO or similar open-vocabulary detector to get a 2D Bounding Box.
+Segmentation: Pass the box to SAM 2 (Segment Anything Model) for precise contouring.
+3D Projection: Use the AR device's depth map. Perform a raycast from the center of the 2D bounding box to determine the $(x, y, z)$ coordinates in world space.
+Module D: AR Rendering
+Asset Library: Pre-load "Ghost Hand" models (rigged hands in varying grasp poses like 'pinch', 'grip').
+Dynamic Instantiation: When the device receives a {type: "Hand_Twist", location: (x,y,z)} packet, instantiate the model at that coordinate, oriented toward the user's camera vector.
+
+3. Technology Stack Selection
+
+4. Real-Time System Design Strategies
+Latency Optimization (Time-To-First-Token):
+Streaming Inputs: Use vLLM's chunked input processing. Instead of waiting for a full voice command, stream audio/video chunks to the server to pre-fill the KV cache.
+Context Pruning: Implement a "Context Manager" via MCP that summarizes previous steps and discards irrelevant history to keep the context window small and fast.
+Asynchronous Pipelines:
+Decouple the Rendering Loop (60fps) from the Inference Loop (1-2fps).
+Use Predictive Tracking: If the VLM says "turn the valve," render the overlay immediately at the last known valve location while the segmentation mask refines in the background.
+Edge vs. Cloud:
+Strict Edge: IMU Attention gating (Equation 1: $a < \tau$).
+Local Fog/Server: VLM inference and SAM 2 segmentation. This keeps data within the local network (privacy/speed).
+
+5. Development Acceleration Techniques
+MCP for Tooling:
+Documentation Server: Run an MCP server that indexes the device manuals (PDFs) the user is working on. The AI queries this server to generate accurate instructions.
+Sequential Thinking MCP: Use the sequential-thinking MCP tool during the "planning" phase to let the AI self-correct its guidance plan before showing it to the user (e.g., "Wait, I missed a safety check").
+Assistive Coding:
+Use Cursor or Claude Code configured with the LSP-MCP bridge. This allows your coding agent to understand the full semantic structure of your Unity C# scripts and Python backend, preventing "hallucinated" function calls during development.
+Prompt Versioning:
+Treat system prompts (e.g., "You are an expert mechanic...") as code. Use an MCP tool to fetch prompts from a Git repository, ensuring every version of the guidance logic is version-controlled.
+
+6. Task-State Modeling & Intent Inference
+Task State: Modeled as a Directed Acyclic Graph (DAG) stored in a lightweight SQLite database managed by an MCP server.
+Nodes: Steps (e.g., "Remove Screws").
+Edges: Dependencies (cannot "Remove Lid" before "Remove Screws").
+Transitions: Triggered by VLM visual verification (e.g., VLM confirms "Screws are missing" $\rightarrow$ Advance state).
+Intent Inference:
+Implicit Intent: Derived from the Head-Motion Attention Model. If the user stabilizes their head ($a < \tau$) on an object for $>1$ second, the system infers intent to interact with that object.
+Explicit Intent: Voice commands ("How do I fix this?") processed via the VLM.
+
+7. XR Interaction & Rendering Strategies
+Based on the Guided Reality taxonomy, the system will dynamically select:
+Highlight: Particle effects around a bounding box (for "Locate X"). Use particles instead of solid boxes for better visibility.
+Ghost Hands: Transparent 3D hand models animating the required grasp/action (for "Twist", "Pull", "Press").
+Movement Arrows: Curved 3D arrows for rotational tasks; dynamic vectors for translational tasks.
+Widgets: Floating countdown timers for time-sensitive steps (e.g., "Wait 10 seconds for glue to set") anchored to the object.
+Rendering Optimization: Use "Billboarding" for text labels (always face the user) and simple unlit shaders for guidance assets to maximize frame rate.
+
+8. Evaluation Framework
+Dexterity Measurement: 
+Compare the user's hand trajectory (tracked via AR device) against the "ideal" trajectory generated by the system. Calculate Dynamic Time Warping (DTW) distance.
+Latency Benchmarking: 
+Motion-to-Photon Latency: Time from head movement to AR overlay update.
+Guidance Latency: Time from user query to visual overlay appearance. Target $< 2s$ for usability.
+Accuracy: 
+Intersection over Union (IoU): Compare the system's generated 2D bounding box against ground-truth labels of the object.
+Success Rate: Percentage of users completing the task without asking for human help (benchmark: $>85%$ success rate in GlaciAR).
+
+9. Risks, Limitations, and Mitigation
+Risk: Context Poisoning. Long sessions fill the VLM context window with irrelevant history, degrading reasoning. 
+Mitigation: Use Code Execution MCP. Instead of passing raw data to the LLM, let the LLM write a Python script to filter the task state, returning only the current step's necessary context.
+Risk: Occlusion. Ghost hands might block the user's view of the real tool. 
+Mitigation: Set ghost hand transparency to 50% and implement a proximity fade-out (guidance disappears as the user's real hand approaches).
+Risk: Safety Critical Failures. AI hallucinating a dangerous instruction. 
+Mitigation: Implement a "Safety MCP Middleware" that scans generated instructions against a whitelist of allowed actions before rendering.
+
+10. Phased Development Timeline (FYP)
+Phase 1: Foundation (Months 1-2)
+Set up vLLM server and Unity AR project.
+Implement the "Attention Gate" using IMU data (Source 20).
+Milestone: System detects when user is looking at an object and streams video to server.
+Phase 2: The MCP Core (Months 3-4)
+Build MCP servers for task state (SQLite) and documentation (RAG).
+Implement the VLM $\rightarrow$ JSON plan pipeline.
+Milestone: AI receives image, looks up manual via MCP, and outputs text instructions.
+Phase 3: Visual Grounding (Months 5-6)
+Integrate Grounding DINO + SAM 2.
+Implement 3D Raycasting in Unity.
+Create "Ghost Hand" asset bundle.
+Milestone: System overlays a 3D box and arrow on a target object in real-time.
+Phase 4: Optimization & Eval (Months 7-8)
+Implement "Code Mode" for context efficiency.
+Run user studies (Dexterity/Latency benchmarks).
+Final thesis writing.
+
+
+==================================================
+==== FILE: Notes.txt ====
+==================================================
+
+Gym coach

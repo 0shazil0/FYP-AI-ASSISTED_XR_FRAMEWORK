@@ -1,0 +1,10 @@
+Analyze this image and return ONLY JSON with this exact shape:
+{
+  "scene_summary": "one short sentence",
+  "objects_detected": ["object1", "object2"]
+}
+
+Rules:
+- JSON only, no markdown.
+- Mention only clearly visible objects.
+- If uncertain, set scene_summary to "Uncertain scene".

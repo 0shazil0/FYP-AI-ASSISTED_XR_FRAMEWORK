@@ -1,0 +1,71 @@
+# NeuroGuide XR: AI-Powered XR Assistive Guidance System Master Plan
+
+This document serves as the master execution plan for the **NeuroGuide XR** Final Year Project (Group 19). It synthesizes the problem statement, objectives, proposed architecture, and methodology into a structured roadmap for development.
+
+## 1. Project Overview & Objectives
+
+**Problem:** Users face difficulties performing tasks that require procedural knowledge or interaction with complex interfaces. Traditional instructions lack real-time contextual awareness.
+**Aim:** To develop an AI-powered XR system that provides real-time, context-aware visual guidance directly within the user's field of view.
+
+### Primary Use Cases:
+1. **AI XR Gym Coach:** Posture correction and 3D demonstration in AR.
+2. **AI XR Cooking Assistant:** Step-by-step recipe instructions and tool recognition.
+3. **AI XR Digital Assistant for Elderly:** Guiding users through digital UI elements (e.g., MS Word).
+4. **AI XR Disaster Management:** Safe evacuation and spatial awareness.
+
+## 2. System Architecture (Hybrid Edge-Compute)
+
+To achieve real-time performance (low latency) while performing complex cognitive reasoning, the system uses a Hybrid-Spatial Architecture:
+
+- **Sensing & Rendering Layer (AR Device):** Handles real-time spatial tracking, IMU-based attention gating, camera capture, and rendering (Unity 6 + AR Foundation / Lightship).
+- **Perception & Generation Layer (Edge Server):** Performs heavy reasoning. Uses an inference engine (vLLM) with Vision-Language Models (VLMs) and Grounding DINO + SAM 2 for object segmentation.
+- **Context & Reasoning Layer (MCP Host):** A Python-based Model Context Protocol (MCP) host orchestrates context retrieval (e.g., querying manuals via RAG, maintaining task state in SQLite).
+
+## 3. Technology Stack
+
+### Edge Server / Backend:
+- **Language/Framework:** Python 3.10+, FastAPI
+- **AI/Vision:** vLLM (serving Qwen2.5-VL / Llama 3.2 Vision), Grounding DINO, SAM 2, YOLOv8
+- **Context Engine:** Model Context Protocol (MCP) servers (`sqlite-mcp` for state, `fetch-mcp` for docs, Sequential Thinking)
+
+### AR Client (Mobile / Headset):
+- **Game Engine:** Unity 6 (LTS)
+- **XR SDKs:** AR Foundation, Immersal SDK (VPS mapping), Niantic Lightship (Semantic Masking)
+- **Networking:** NativeWebSocket (for connecting dynamically to the Python WebSocket server)
+
+## 4. End-to-End Implementation Roadmap
+
+### Phase 1: Foundation (The "Eyes" & Environment)
+- [ ] Set up the FastAPI Python backend with WebSocket support (`ws://localhost:8000/stream`).
+- [ ] Initialize the Unity 6 AR project with AR Foundation and Immersal SDK.
+- [ ] Implement the *Attention Gate* on the client using IMU data to trigger frame extraction only on stable fixations.
+- [ ] Implement bi-directional communication (Unity sending compressed frames, Python returning simple JSON responses).
+
+### Phase 2: Perception & Reasoning (The "Brain" via MCP)
+- [ ] Deploy a local/edge VLM via vLLM.
+- [ ] Create an MCP Host to orchestrate LLM reasoning with external tools.
+- [ ] Implement the `sqlite-mcp` server to track complex Task State (DAG of steps).
+- [ ] Implement the Document RAG MCP server to provide the LLM with context from PDF manuals.
+- [ ] Refine the Vision pipeline: Pass VLM outputs to Grounding DINO to fetch 2D bounding boxes.
+
+### Phase 3: Spatial Grounding & AR Visualization (The "Hands")
+- [ ] Implement 2D to 3D Coordinate Mapping (Raycasting) in Unity targeting the bounding box centroids.
+- [ ] Integrate SAM 2 on the backend for precise segmentation masking if needed.
+- [ ] Develop the *Asset Library* in Unity (Ghost Hands, Dynamic pulsing 3D arrows, floating billboards).
+- [ ] Instantiate dynamic AR overlays based on the JSON `visual_type` and `location_3d` payload from the server.
+
+### Phase 4: Optimization, Use Cases & Evaluation
+- [ ] Implement predictive tracking (Kalman Filters) in Unity to mitigate tracking drift / network latency.
+- [ ] Build out the specific logic flows for the Gym Coach and Elderly Assistant use cases.
+- [ ] Conduct performance testing: Evaluate Motion-to-Photon Latency (< 20ms) and Guidance Latency (< 2s).
+- [ ] Conduct user studies: Modified Box & Block Test (Dexterity) and NASA-TLX (Cognitive Load).
+
+## 5. Next Immediate Steps
+1. Verify development hardware (GPU availability for vLLM or setup API keys for cloud alternatives like Gemini 1.5 Pro).
+2. Scaffold the FastAPI server repository.
+3. Scaffold the Unity 6 mobile project repository.
+4. Establish the MCP-accelerated coding environment (Cursor/Claude with Unity & OpenCV docs indexed via MCP).
+
+## User Review Required
+> [!IMPORTANT]
+> Please review this master plan. It synthesizes the most advanced technical approach described in the resources (MCP integration, VLM on Edge, SAM 2, Unity 6). Let me know if you approve this plan to begin the development of Phase 1, or if you'd like to adjust the technology stack (e.g., relying purely on cloud APIs instead of local edge models).

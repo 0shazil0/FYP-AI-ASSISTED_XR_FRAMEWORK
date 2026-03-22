@@ -1,0 +1,274 @@
+Perfect 👍 — I’ll give you a **clean START → END guide** so you don’t get lost.
+We’ll do everything step-by-step and assume **nothing is remembered**.
+
+Goal:
+
+✅ Open WSL Ubuntu
+✅ Setup Python
+✅ Install vLLM
+✅ Store models in `D:\vllm_model`
+✅ Run Qwen locally
+
+---
+
+# 🟢 STEP 1 — Open WSL (Ubuntu)
+
+You have **3 easy ways**:
+
+### ✅ Method 1 (Easiest)
+
+1. Press **Windows Key**
+2. Type:
+
+```
+Ubuntu
+```
+
+3. Click **Ubuntu** app
+
+👉 A black terminal opens → this is WSL.
+
+---
+
+### ✅ Method 2 (From CMD / PowerShell)
+
+Open Command Prompt and type:
+
+```bash
+wsl
+```
+
+or:
+
+```bash
+wsl -d Ubuntu
+```
+
+---
+
+### ✅ Method 3 (Windows Terminal)
+
+Open **Windows Terminal** → click dropdown → select **Ubuntu**.
+
+---
+
+✅ You should see something like:
+
+```
+username@DESKTOP:~$
+```
+
+---
+
+# 🟢 STEP 2 — Update Ubuntu (IMPORTANT)
+
+Run:
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+(It may ask for Linux password.)
+
+---
+
+# 🟢 STEP 3 — Install Python + tools
+
+```bash
+sudo apt install python3-pip python3-venv git -y
+```
+
+Check:
+
+```bash
+python3 --version
+```
+
+(3.10+ is good)
+
+---
+
+# 🟢 STEP 4 — Create Project Environment
+
+```bash
+mkdir fypvllm 
+cd fypvllm
+```
+
+Create virtual environment:
+
+```bash
+python3 -m venv vllm_env
+```
+
+Activate:
+
+```bash
+source vllm_env/bin/activate
+```
+
+You will see:
+
+```
+(vllm_env) username@DESKTOP:~/ai_project$
+```
+
+✅ Environment active.
+
+---
+
+# 🟢 STEP 5 — Set Model Folder (D Drive)
+
+Your folder:
+
+```
+D:\vllm_model
+```
+
+Inside WSL path becomes:
+
+```
+/mnt/d/vllm_model
+```
+
+Set it:
+
+```bash
+export HF_HOME=/mnt/d/vllm_model
+export HUGGINGFACE_HUB_CACHE=/mnt/d/vllm_model
+```
+
+Make permanent:
+
+```bash
+nano ~/.bashrc
+```
+
+Add at bottom:
+
+```bash
+export HF_HOME=/mnt/d/vllm_model
+export HUGGINGFACE_HUB_CACHE=/mnt/d/vllm_model
+```
+
+Save:
+
+```
+CTRL+O → ENTER → CTRL+X
+```
+
+Reload:
+
+```bash
+source ~/.bashrc
+```
+
+---
+
+# 🟢 STEP 6 — Check GPU Access (VERY IMPORTANT)
+
+Run:
+
+```bash
+nvidia-smi
+```
+
+If GPU info appears ✅ perfect.
+
+If command not found → tell me (needs one fix).
+
+---
+
+# 🟢 STEP 7 — Install PyTorch (GPU)
+
+Example CUDA 12.x:
+
+```bash
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+```
+
+Test:
+
+```bash
+python3 -c "import torch; print(torch.cuda.is_available())"
+```
+
+Must print:
+
+```
+True
+```
+
+---
+
+# 🟢 STEP 8 — Install vLLM
+
+```bash
+pip install vllm
+```
+
+This takes a few minutes.
+
+---
+
+# 🟢 STEP 9 — Run Qwen (FIRST TIME DOWNLOAD)
+
+Start server:
+
+```bash
+python3 -m vllm.entrypoints.openai.api_server \
+  --model Qwen/Qwen2.5-7B-Instruct \
+  --trust-remote-code
+```
+
+What happens now:
+
+✅ Model downloads
+✅ Saved in `D:\vllm_model`
+✅ Local AI server starts
+
+You will see:
+
+```
+Uvicorn running on http://0.0.0.0:8000
+```
+
+🎉 Your local AI is running.
+
+---
+
+# 🟢 STEP 10 — Test in Browser
+
+Open browser:
+
+```
+http://localhost:8000/docs
+```
+
+You’ll see API interface.
+
+---
+
+# 🧠 What You Have Built
+
+You now have:
+
+```
+Windows (Unity)
+        ↓
+WSL Ubuntu
+        ↓
+Local Qwen AI Server
+        ↓
+GPU inference
+```
+
+This is **real industry architecture**.
+
+---
+
+## 🔥 VERY IMPORTANT (Next Step)
+
+Before downloading Vision model (20GB+), we should test your VRAM compatibility.
+
+👉 Next I can show you a **30-second test** that tells exactly which Qwen-VL size your laptop can run safely — prevents crashes.
