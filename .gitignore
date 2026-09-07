@@ -1,7 +1,10 @@
+# ==============================================================================
+# NeuroGuide XR - Git Ignore Configuration
+# ==============================================================================
+
 # =========================
 # UNITY (ESSENTIAL IGNORE)
 # =========================
-
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
@@ -11,84 +14,80 @@
 UserSettings/
 MemoryCaptures/
 dummy*_BackUpThisFolder_ButDontShipItWithYourGame/
+*_BackUpThisFolder_ButDontShipItWithYourGame/
 *_BurstDebugInformation_DoNotShip/
+.utmp/
+_Recovery/
+*/_Recovery/
+*_Recovery*
+hf_cache/
+*/hf_cache/
+.agent/
+*/.agent/
+.agents/
+*/.agents/
 
-# Auto-generated VS / Rider files
+# Auto-generated IDE & Project files
 .vs/
 .idea/
+.vscode/
+*/.vscode/
 *.csproj
 *.unityproj
 *.sln
+*.slnx
 *.suo
 *.tmp
 *.user
 *.userprefs
 *.pidb
 *.booproj
-
-# Unity cache & crash
 sysinfo.txt
-.utmp/
 
 # =========================
-# IMPORTANT: KEEP THESE
+# PYTHON / BACKEND
 # =========================
-# DO NOT IGNORE:
-# Assets/
-# Packages/
-# ProjectSettings/
-# *.meta
-
-# =========================
-# NODE / BACKEND
-# =========================
-
-node_modules/
-venv/
-backend/venv/
 __pycache__/
-*.pyc
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Environment variables
-# .env
-# .env.local
-# .env.*.local
-
-# Build outputs
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+backend/venv/
+backend/env/
+.pytest_cache/
+.coverage
+htmlcov/
 dist/
 build/
+*.egg-info/
 
-# =========================
-# VS CODE
-# =========================
+# Environment variables & secrets (CRITICAL)
+.env
+.env.*
+*.env
+backend/.env
+backend/services/.env
+!backend/.env.example
 
-# .vscode/*
-# !.vscode/settings.json
-# !.vscode/extensions.json
-# !.vscode/launch.json
-# !.vscode/tasks.json
+# Large model weights & third-party clones
+FastSAM-x.pt
+backend/FastSAM-x.pt
+*.safetensors
+backend/OmniParser/
 
-# =========================
-# OS FILES
-# =========================
+# Database files
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+backend/neuroguide.db
 
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# =========================
-# LOGS
-# =========================
-
-*.log
-
-# =========================
-# LARGE / GENERATED FILES
-# =========================
-
+# Large / Generated binary files & builds
 *.apk
 *.aab
 *.unitypackage
@@ -97,36 +96,30 @@ desktop.ini
 *.tar
 *.gz
 *.7z
-
-# Videos / recordings
 *.mp4
 *.mov
 *.avi
+*.log
 
 # =========================
-# OPTIONAL (USE WITH LFS)
+# OS GENERATED
 # =========================
-# Uncomment if using Git LFS
-
-# *.fbx
-# *.png
-# *.jpg
-# *.psd
-# *.wav
-# *.mp3
-# *.ogg
+.DS_Store
+Thumbs.db
+desktop.ini
 
 # =========================
-# DATABASE (if any local)
+# INTERNAL SCRATCH & PLANS
 # =========================
-
-*.sqlite
-*.db
-
-# =========================
-# TEST / TEMP FILES
-# =========================
-
-*.tmp
-*.bak
-*.old
+# Implementation plans and scratch notes
+*implementation_plan*
+*Implementation_plan*
+*IMPLEMENTATION_PLAN*
+AR_LIVE_GUIDANCE_PHASE1_PLAN.md
+FINAL_PROJECT_ROADMAP.md
+tasktracker.md
+backups/
+_make_backups.ps1
+*.xlsx
+WhatsApp*.jpeg
+roboflow yolo txt

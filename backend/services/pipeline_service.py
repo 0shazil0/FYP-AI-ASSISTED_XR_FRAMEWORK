@@ -10,6 +10,7 @@ from config import (
     GROUNDING_DINO_MIN_TRIGGER_INTERVAL_SECONDS,
     GROUNDING_DINO_TRIGGER_CONFIDENCE,
     GROUNDING_DINO_TRIGGER_DIFF_SCORE,
+    IMU_HIGH_MOTION_THRESHOLD,
 )
 from schemas import GuidancePayload, TaskContext
 from services.detection_service import DetectionService
@@ -44,6 +45,7 @@ class PipelineService:
         raw_payload: dict | None = None,
     ) -> GuidancePayload:
         payload = raw_payload or {}
+        imu_motion_score = self._extract_imu_motion_score(payload)
         task_context = TaskContext(
             use_case=str(payload.get("use_case", "gym_coach")),
             task=str(payload.get("task", "general_guidance")),
@@ -56,6 +58,7 @@ class PipelineService:
             detections,
             diff_score=diff_score,
             raw_payload=payload,
+            imu_motion_score=imu_motion_score,
         )
         open_vocab_labels = self._extract_open_vocab_labels(payload, use_case=task_context.use_case)
         open_vocab_detections = []
@@ -86,6 +89,7 @@ class PipelineService:
                 "detection_count": len(merged_detections),
                 "yolo_detection_count": len(detections),
                 "open_vocab_detection_count": len(open_vocab_detections),
+                "imu_motion_score": round(imu_motion_score, 5),
                 "scene_id": scene.scene_id,
                 "detector_model_path": self._detection_service.runtime_model_path,
                 "detector_error": self._detection_service.last_error,
@@ -94,6 +98,15 @@ class PipelineService:
                 "open_vocab_enabled": self._open_vocab_service.is_enabled,
                 "open_vocab_model_id": self._open_vocab_service.model_id,
                 "open_vocab_error": self._open_vocab_service.last_error,
+                "object_hints": [
+                    {
+                        "label": item.label,
+                        "bbox": item.bbox,
+                        "confidence": item.confidence,
+                        "source": item.source,
+                    }
+                    for item in merged_detections
+                ],
             }
         )
         return guidance
@@ -147,9 +160,13 @@ class PipelineService:
         *,
         diff_score: float,
         raw_payload: dict,
+        imu_motion_score: float,
     ) -> tuple[bool, str]:
         if not self._open_vocab_service.is_enabled:
             return False, "disabled"
+
+        if imu_motion_score >= IMU_HIGH_MOTION_THRESHOLD and not bool(raw_payload.get("force_open_vocab", False)):
+            return False, "imu_high_motion_hold"
 
         current_time = monotonic()
         if current_time - self._last_open_vocab_trigger_at < GROUNDING_DINO_MIN_TRIGGER_INTERVAL_SECONDS:
@@ -178,6 +195,35 @@ class PipelineService:
             return True, "scene_change"
 
         return False, "high_conf_yolo"
+
+    def _extract_imu_motion_score(self, payload: dict) -> float:
+        imu_data = payload.get("imu_data")
+        if not isinstance(imu_data, dict):
+            return 0.0
+
+        try:
+            explicit_score = imu_data.get("motion_score")
+            if explicit_score is not None:
+                return max(0.0, float(explicit_score))
+        except (TypeError, ValueError):
+            pass
+
+        gyro = imu_data.get("gyro")
+        accel = imu_data.get("accel")
+
+        gyro_mag = 0.0
+        accel_mag = 0.0
+        try:
+            if isinstance(gyro, list) and len(gyro) >= 3:
+                gx, gy, gz = float(gyro[0]), float(gyro[1]), float(gyro[2])
+                gyro_mag = (gx * gx + gy * gy + gz * gz) ** 0.5
+            if isinstance(accel, list) and len(accel) >= 3:
+                ax, ay, az = float(accel[0]), float(accel[1]), float(accel[2])
+                accel_mag = abs(((ax * ax + ay * ay + az * az) ** 0.5) - 1.0)
+        except (TypeError, ValueError):
+            return 0.0
+
+        return max(0.0, gyro_mag + accel_mag)
 
     def _merge_detections(self, base_detections, open_vocab_detections):
         merged = list(base_detections)

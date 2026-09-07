@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 public class WebSocketManager : MonoBehaviour
 {
     private ClientWebSocket _webSocket;
-    private Uri _serverUri = new Uri("ws://192.168.0.100:8000/stream"); // Replace with actual IP when on mobile device
+    private Uri _serverUri = new Uri("ws://192.168.100.19:8000/stream"); // Replace with actual IP when on mobile device
     private CancellationTokenSource _cancellationTokenSource;
 
     public static WebSocketManager Instance { get; private set; }

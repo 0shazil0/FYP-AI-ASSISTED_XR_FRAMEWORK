@@ -39,3 +39,15 @@ class GuidancePayload(BaseModel):
     confidence: float = Field(default=0.0, ge=0.0, le=1.0)
     reasoning_source: str = "rule_based"
     debug: dict[str, Any] = Field(default_factory=dict)
+
+
+class ImuSample(BaseModel):
+    accel: list[float] = Field(default_factory=lambda: [0.0, 0.0, 0.0])
+    gyro: list[float] = Field(default_factory=lambda: [0.0, 0.0, 0.0])
+    attitude: list[float] = Field(default_factory=lambda: [0.0, 0.0, 0.0, 1.0])
+    device_orientation: str = "Unknown"
+    sent_at_ms: int = 0
+
+
+class StepControlPayload(BaseModel):
+    action: str = "next"

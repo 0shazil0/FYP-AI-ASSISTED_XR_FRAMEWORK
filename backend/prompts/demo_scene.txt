@@ -1,10 +1,33 @@
-Analyze this image and return ONLY JSON with this exact shape:
+Analyze this gym scene image. The persona system prompt defines your voice.
+Return ONLY valid JSON — no markdown, no code fences, no prose outside the JSON object.
+
+Required schema:
 {
-  "scene_summary": "one short sentence",
-  "objects_detected": ["object1", "object2"]
+  "scene_summary": "One sentence — what gym equipment or scene is visible",
+  "instruction_text": "Primary coaching cue — max 20 words, action-first",
+  "objects_detected": ["Machine Name or equipment visible"],
+  "suggested_queries": ["chip 1 ≤8 words", "chip 2 ≤8 words", "chip 3 ≤8 words"],
+  "response_text": "Opening coach line — 1-2 sentences max, direct, no filler",
+  "coach_note": "",
+  "fetch_exercise": null,
+  "task": "gym_guidance",
+  "visual_type": "highlight",
+  "location_3d": [0.0, 0.0, 1.3],
+  "step_number": 1,
+  "total_steps": 1
 }
 
 Rules:
-- JSON only, no markdown.
-- Mention only clearly visible objects.
-- If uncertain, set scene_summary to "Uncertain scene".
+- objects_detected: list exact machine names visible (e.g. "Lat Pulldown Machine", "Incline Bench Press Machine").
+- suggested_queries: 3 short chips relevant to what is visible.
+- response_text: The greeting/observation. Max 2 sentences. No "Great!", "Awesome!" openers.
+- fetch_exercise: AUTOMATICALLY set this whenever you detect a gym machine. Use the format:
+    {"bodyPart": "<body_part>", "query": "<machine name>"}
+  Body part mappings:
+    "Flat Bench Press Machine"    → bodyPart = "chest"
+    "Incline Bench Press Machine" → bodyPart = "chest"
+    "Lat Pulldown Machine"        → bodyPart = "back"
+    "Leg Press Machine"           → bodyPart = "upper legs"
+  If no gym machine is visible, set fetch_exercise to null.
+- coach_note: Leave "" — used only after set completion.
+- JSON only. No text before or after the object.
